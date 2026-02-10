@@ -43,7 +43,7 @@ while True:
      p1score = 0
      p2score = 0 
      games = 0 
-     make     
+     make     kjxdkjchjxkv
     
     
 
