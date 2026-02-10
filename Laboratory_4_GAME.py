@@ -1,4 +1,11 @@
+import os 
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def normalize(text):
+    return text.lower()
 
 ##INTRO HEADER AND RULES SECTION
 while True:
@@ -12,6 +19,9 @@ while True:
     print("You will then be asked how many points one player needs in order to win the game.")
     print("Have fun!")
     print("===========================================================================================")
+
+    p1 = input("Enter Player 1 Name: ")
+    p2 = input("Enter Player 2 Name: ")
     
     ##DIFFICULTY SELECTION
     print ("Choose your difficulty")
@@ -42,9 +52,10 @@ while True:
     
      p1score = 0
      p2score = 0 
-     games = 0 
-     make     kjxdkjchjxkv
+     games = 0
     
+    while games < bestof:
+        
     
 
 

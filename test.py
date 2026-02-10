@@ -1,5 +1,6 @@
 import os
 
+
 # ---------- Utility ----------
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -85,8 +86,8 @@ BEGINNER = [
 ========="""
 ]
 
-MODERATE = BEGINNER[2:]       # shorter progression
-ADVANCED = BEGINNER[4:]       # even shorter
+MODERATE = BEGINNER[2:]
+ADVANCED = BEGINNER[4:]
 
 
 def get_graphics(level):
@@ -107,10 +108,9 @@ def play_round(secret, graphics, max_wrong):
     while True:
         clear_screen()
 
-        # Display graphics
         print(graphics[min(wrong, len(graphics)-1)])
 
-        # Show word progress
+        # Display progress
         display = ""
         completed = True
         for ch in secret:
@@ -121,25 +121,24 @@ def play_round(secret, graphics, max_wrong):
             else:
                 display += "_ "
                 completed = False
+
         print("\nWord:", display)
         print("Wrong guesses:", wrong, "/", max_wrong)
-        print("Guessed letters:", " ".join(sorted(guessed)))
+        print("Guessed:", " ".join(sorted(guessed)))
 
-        # Win check
         if completed:
             print("\n🎉 Correct! Word was:", secret)
             return True
 
-        # Lose check
         if wrong >= max_wrong:
             print("\n💀 Game Over! Word was:", secret)
             return False
 
-        # Guess input
-        guess = input("Enter letter: ").lower()
+        guess = input("Enter letter or number: ").lower()
 
-        if len(guess) != 1 or not guess.isalpha():
-            print("Invalid input!")
+        # ✅ Allow letters AND digits
+        if len(guess) != 1 or not guess.isalnum():
+            print("Invalid input! Enter one letter or number.")
             input("Press Enter...")
             continue
 
@@ -152,14 +151,11 @@ def play_round(secret, graphics, max_wrong):
             wrong += 1
 
 
-# ---------- Main Game ----------
+# ---------- Main ----------
 def choose_difficulty():
     while True:
-        print("Choose difficulty:")
-        print("1. Beginner")
-        print("2. Moderate")
-        print("3. Advanced")
-        choice = input("Select: ")
+        print("1. Beginner\n2. Moderate\n3. Advanced")
+        choice = input("Choose difficulty: ")
         if choice in ("1", "2", "3"):
             return int(choice)
 
@@ -173,8 +169,6 @@ def choose_series():
 
 def main():
     clear_screen()
-    print("=== Modified Hangman ===")
-
     level = choose_difficulty()
     graphics, max_wrong = get_graphics(level)
     total_games = choose_series()
@@ -185,51 +179,35 @@ def main():
 
     while score[0] < wins_needed and score[1] < wins_needed:
         clear_screen()
-        print(f"\n--- Round {round_num} ---")
+        print(f"Round {round_num}")
         print("Score P1:", score[0], " P2:", score[1])
 
-        # Player 1 sets word
-        secret = input("\nPlayer 1 enter word/phrase: ")
+        secret = input("\nPlayer 1 word/phrase: ")
         clear_screen()
-
-        print("Player 2 guessing...")
-        win = play_round(secret, graphics, max_wrong)
-        if win:
+        if play_round(secret, graphics, max_wrong):
             score[1] += 1
         else:
             score[0] += 1
 
-        # Swap roles
-        secret = input("\nPlayer 2 enter word/phrase: ")
+        secret = input("\nPlayer 2 word/phrase: ")
         clear_screen()
-
-        print("Player 1 guessing...")
-        win = play_round(secret, graphics, max_wrong)
-        if win:
+        if play_round(secret, graphics, max_wrong):
             score[0] += 1
         else:
             score[1] += 1
 
         round_num += 1
 
-        # Continue option
-        cont = input("\nContinue playing? (y/n): ").lower()
-        if cont != "y":
+        if input("\nContinue? (y/n): ").lower() != "y":
             break
 
     clear_screen()
-    print("=== Final Score ===")
-    print("Player 1:", score[0])
-    print("Player 2:", score[1])
-
-    if score[0] > score[1]:
-        print("🏆 Player 1 Wins!")
-    elif score[1] > score[0]:
-        print("🏆 Player 2 Wins!")
-    else:
-        print("It's a tie!")
+    print("Final Score:", score)
+    print("Winner:",
+          "Player 1" if score[0] > score[1]
+          else "Player 2" if score[1] > score[0]
+          else "Tie")
 
 
-# Run game
 if __name__ == "__main__":
     main()
