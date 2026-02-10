@@ -1,0 +1,8 @@
+
+
+ask the player to input names for player one and player two 
+
+it will then display a counter on how many points the players have
+the top of the screen will also display what difficulty they are currently on and how many points is needed to win
+
+for the sdfdsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf
