@@ -6,3 +6,24 @@ it will then display a counter on how many points the players have
 the top of the screen will also display what difficulty they are currently on and how many points is needed to win
 
 for the sdfdsfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf
+
+
+
+Task: Modified Hangman
+Modifications:
+1. Game has three level of difficulty. Must be picked before the game
+starts.
+- Beginner : 7 wrong guesses before game over.
+- Moderate : 5 wrong guesses before game over.
+- Advance : 3 wrong guesses before game over.
+2. Each level has different graphics representation before game over.
+3. Two player game with scoring.
+- Players 1 and 2 will enter the movie title/artist/song/singer to be
+guessed by the opponent.
+- Use clear screen command to erase or go back to main screen.
+- Players will decide how many games to be played. Best of 3/5/7.
+4. Option to cancel or continue playing even if no player has won yet.
+Additional Notes:
+- Game is not case sensitive
+- Spaces is part of input and must be shown during game proper to
+determine the number of words to be guessed.

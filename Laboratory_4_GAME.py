@@ -24,37 +24,148 @@ while True:
     p2 = input("Enter Player 2 Name: ")
     
     ##DIFFICULTY SELECTION
-    print ("Choose your difficulty")
-    print("A. Beginner ")
-    print("B. Moderate ")
-    print("C. Advance ")
-    option = input("Selection Option: ").upper()
-    print("---------------------------")
-    
+    def difficulty():
+        while true:
+            print ("Choose your difficulty")
+            print("A. Beginner ")
+            print("B. Moderate ")
+            print("C. Advance ")
+            option = input("Selection Option: ").upper()
+            print("---------------------------")
+            if choice in ("A", "B","C",):
+                return choice
+            
     ##BEST OF HOW MANY SELECTION
     print("Choose how many points it will take to win")
     print("A. Best of 3 (first to three points win)")
     print("B. Best of 5 (first to five points win)")
     print("C. Best of seven (first to seven points will win)")
-    bestof = input("Selction Option: ")
+    while true
+        bestof = input("Selction Option: ")
+        if bestof == "1":
+            wins_needed = 2
+            break
+        elif bestof == "2":
+            wins_needed = 3
+            break
+        elif bestof == "3":
+            wins_needed = 4
+            break
+        else: 
+            print("Invalid Choice. Try again.")
     
-    
-    lives = 1
+## DIFFICULTY SELECTION
+    level = difficulty()
 
-    if option == "A":
-        lives = 7
-    elif option == "B":
-        lives = 5
-    elif option == "C":
-        lives = 3
-    else option != "A, B, C"
-        print("Invalid input")
+    if level == "A":
+        max_wrong = 6
+    elif level == "B":
+        max_wrong = 4
+    else:
+        max_wrong = 2
+
+## GRAPHICS (used list)
     
-     p1score = 0
-     p2score = 0 
-     games = 0
-    
-    while games < bestof:
+    hangman = [
+"""
+ +---+
+     |
+     |
+     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+     |
+     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+ |   |
+     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+/|   |
+     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+/|\\  |
+     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+/|\\  |
+/     |
+     |
+     |
+=========
+""",
+"""
+ +---+
+ O   |
+/|\\  |
+/ \\  |
+     |
+     |
+=========
+"""
+]
+
+## main
+p1_score = 0
+p2_score = 0
+
+while p1_score < wins_needed and p2_score < wins_needed:
+
+    ## player 1
+    secret = normalize(input(f"\n{p1}, enter an artist/movie name: "))
+    clear_screen()
+
+    wrongGraphics = 0
+    guessed = ""
+
+    while True:
+
+        print("================================")
+        print(f"Current Player: {p2}")
+        print(f"Score = {p1}: {p1_score} | {p2}: {p2_score}")
+        print("=================================")
+
+        print(hangman[wrongGraphics])
+
+        ## ADD UNDERSCORE GRAPHICS
+
+        print(f"Wrong guesses: {wrong} / {max_wrong}")
+        print(f"Guessed: {guessed}")
+
+        guess = normalize(input("Enter letter or number: "))
+
+        guessed += guess
+        
+        if guess not in secret:
+            wrong += 1
+
         
     
 
